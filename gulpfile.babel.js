@@ -1,30 +1,30 @@
 import gulp from 'gulp';
 import babel from 'gulp-babel';
+import mocha from 'gulp-mocha';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
 import webpackConfig from './webpack.config.babel';
 import WebpackDevServer from 'webpack-dev-server';
-import sourcemaps from 'gulp-sourcemaps';
+// import sourcemaps from 'gulp-sourcemaps';
 
 
-gulp.task('default', ['server', 'watch']);
+gulp.task('default', ['server']);
 
 gulp.task('babel', () => {
   return gulp.src('./js/**')
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['es2015', 'react'],
-      compact: false
-    }))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./assets/js/'));
+    .pipe(babel())
+    .pipe(gulp.dest('target'));
+})
+
+gulp.task('test', ['babel'], () => {
+  return gulp.src('./test/**.js')
+    .pipe(mocha())
+    .on('error', () => {
+      gulp.emit('end');
+    });
 });
 
-gulp.task('watch', function() {
-  gulp.watch(['./js/**'], ['babel']);
-});
-
-gulp.task('server', ['babel'], (callback) => {
+gulp.task('server', (callback) => {
   new WebpackDevServer(webpack(webpackConfig), {
     publicPath: webpackConfig.output.publicPath,
     hot: true,

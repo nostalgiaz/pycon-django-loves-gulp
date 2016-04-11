@@ -8,11 +8,12 @@ module.exports = {
 
   debug: true,
   devtool: 'eval-source-map',
-  
+
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './assets/js/main'
+    './js/main',
+    './scss/main'
   ],
 
   output: {
@@ -30,6 +31,9 @@ module.exports = {
 
   module: {
     loaders: [{
+      test: /\.scss$/,
+      loaders: ['style', 'css', 'sass']
+    }, {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loaders: ['react-hot', 'babel']
@@ -38,6 +42,6 @@ module.exports = {
 
   resolve: {
     modulesDirectories: ['node_modules', 'bower_components'],
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', '.scss']
   }
 };
