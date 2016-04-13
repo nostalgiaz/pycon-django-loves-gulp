@@ -26,8 +26,7 @@ gulp.task('server', (callback) => {
     new WebpackDevServer(webpack(webpackConfig), {
         publicPath: webpackConfig.output.publicPath,
         hot: true,
-        inline: true,
-        historyApiFallback: true
+        inline: true
     }).listen(3000, '0.0.0.0', (err) => {
         if (err) {
             throw new gutil.PluginError('webpack-dev-server', err);
