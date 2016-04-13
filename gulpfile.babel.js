@@ -5,8 +5,6 @@ import gutil from 'gulp-util';
 import webpack from 'webpack';
 import webpackConfig from './webpack.config.babel';
 import WebpackDevServer from 'webpack-dev-server';
-// import sourcemaps from 'gulp-sourcemaps';
-
 
 gulp.task('default', ['server']);
 
