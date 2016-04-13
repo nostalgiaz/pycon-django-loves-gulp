@@ -5,39 +5,39 @@ import Dog from '../animals/Dog';
 
 
 class FarmApp extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      addedAnimals: ['dog', 'horse']
-    };
-  }
+    constructor() {
+        super();
+        this.state = {
+            addedAnimals: ['dog', 'horse']
+        };
+    }
 
-  handleAddAnimal(animal) {
-    this.setState({
-      addedAnimals: this.state.addedAnimals.concat(animal)
-    });
-  }
+    handleAddAnimal(animal) {
+        this.setState({
+            addedAnimals: this.state.addedAnimals.concat(animal)
+        });
+    }
 
-  renderAddAnimals() {
-    return (
-      <div>
-        <button onClick={() => this.handleAddAnimal('horse')}>{Horse.getIcon()}</button>
-        <button onClick={() => this.handleAddAnimal('dog')}>{Dog.getIcon()}</button>
-      </div>
-    );
-  }
+    renderAddAnimals() {
+        return (
+            <div>
+            <button onClick={() => this.handleAddAnimal('horse')}>{Horse.getIcon()}</button>
+            <button onClick={() => this.handleAddAnimal('dog')}>{Dog.getIcon()}</button>
+            </div>
+        );
+    }
 
-  render() {
-    return (
-      <ul>
-        <h4>Buy a new animal...</h4>
-        {this.renderAddAnimals()}
+    render() {
+        return (
+            <ul>
+            <h4>Buy a new animal...</h4>
+            {this.renderAddAnimals()}
 
-        <hr/>
+            <hr/>
 
-        <Farm animals={this.state.addedAnimals} />
-      </ul>
-    );
-  }
+            <Farm animals={this.state.addedAnimals} />
+            </ul>
+        );
+    }
 }
 export default FarmApp;

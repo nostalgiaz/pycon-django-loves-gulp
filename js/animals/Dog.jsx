@@ -1,16 +1,16 @@
 import BaseAnimal from './BaseAnimal';
 
 class Dog extends BaseAnimal {
-  static getIcon() {
-    return '🐶';
-  }
+    static getIcon() {
+        return '🐶';
+    }
 
-  renderIcon() {
-    return Dog.getIcon();
-  }
+    renderIcon() {
+        return Dog.getIcon();
+    }
 
-  renderCry() {
-    return 'bau bau!'
-  }
+    renderCry() {
+        return 'bau bau!'
+    }
 }
 export default Dog;
