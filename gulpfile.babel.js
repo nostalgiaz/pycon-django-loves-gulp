@@ -4,6 +4,7 @@ import mocha from 'gulp-mocha';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
 import webpackConfig from './webpack.config.babel';
+import webpackProdConfig from './webpack-prod.config.babel';
 import WebpackDevServer from 'webpack-dev-server';
 
 gulp.task('default', ['server']);
@@ -19,6 +20,16 @@ gulp.task('test', ['babel'], () => {
     .pipe(mocha())
     .on('error', () => {
         gulp.emit('end');
+    });
+});
+
+gulp.task('compile-static', (callback) => {
+    webpack(webpackProdConfig, (err, stats) => {
+        if (err) {
+            throw new gutil.PluginError("webpack", err);
+        }
+        gutil.log("[webpack]", stats.toString());
+        callback();
     });
 });
 
